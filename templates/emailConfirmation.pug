@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+        title Tradish
+        style.
+            .container { padding: 0 100px; }
+
+
+
+    body.container
+        h3 Confirm email
+        p To finish the registration please follow the link
+        p
+            a(href='https://tradish-server.herokuapp.com/api/confirm?token=' + token) Confirm email
+
+        footer
+            p Tradish.io
