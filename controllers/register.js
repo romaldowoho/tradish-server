@@ -1,6 +1,7 @@
 const uuid = require("uuid/v4");
 const User = require("../models/User");
 const sendMail = require("../libs/sendMail");
+const sgMail = require('@sendgrid/mail');
 
 module.exports.register = async (ctx, next) => {
   const verificationToken = uuid();
@@ -21,16 +22,34 @@ module.exports.register = async (ctx, next) => {
     });
   }
 
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const msg = {
+  to: user.email,
+  from: 'hellotradish@gmail.com',
+  subject: 'Sending with Twilio SendGrid is Fun',
+  text: 'and easy to do anywhere, even with Node.js',
+  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+};
+sgMail.send(msg)
+      .then (res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+        ctx.body = {err};
+        return;
+      });
+
   await user.setPassword(ctx.request.body.password);
   await user.save();
 
-  await sendMail({
-    from: "hellotradish@gmail.com",
-    to: user.email,
-    subject: "Confirm your email",
-    locals: { token: verificationToken },
-    template: "emailConfirmation"
-  });
+  // await sendMail({
+  //   from: "hellotradish@gmail.com",
+  //   to: user.email,
+  //   subject: "Confirm your email",
+  //   locals: { token: verificationToken },
+  //   template: "emailConfirmation"
+  // });
 
   ctx.body = { status: "ok" };
 };
