@@ -27,7 +27,7 @@ module.exports = {
   },
   mailer: {
     user: process.env.MAIL_USER,
-    password: process.env.SENDGRID_API_KEY
+    password: process.env.MAIL_PASS
   },
   IEX: {
     public_token: "pk_4f6855b1261044f2861fc64184bbf31e",
