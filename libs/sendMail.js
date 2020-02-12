@@ -12,15 +12,17 @@ const transportEngine =
   process.env.NODE_ENV === "test"
     ? new StubTransport()
     : new SMTPTransport({
-        service: "Gmail",
+        host: "smtp.gmail.com",
+        port: 465, 
+        secure: true,
         auth: {
-          XOAuth2: {
+            type: "OAuth2",
             user: config.mailer.user,
             clientId: config.mailer.clientId,
             clientSecret: config.mailer.clientSecret,
-            refreshToken: config.mailer.refreshToken
+            refreshToken: config.mailer.refreshToken,
+            accessToken: config.mailer.accessToken
           }
-        }
       });
 
 const transport = nodemailer.createTransport(transportEngine);
