@@ -27,7 +27,10 @@ module.exports = {
   },
   mailer: {
     user: process.env.MAIL_USER,
-    password: process.env.MAIL_PASS
+    password: process.env.MAIL_PASS,
+    clientId: process.env.GMAIL_CLIENT_ID,
+    clientSecret: process.env.GMAIL_CLIENT_SECRET,
+    refreshToken: process.env.GMAIL_REFRESH_TOKEN
   },
   IEX: {
     public_token: "pk_4f6855b1261044f2861fc64184bbf31e",
