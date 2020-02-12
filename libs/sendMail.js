@@ -13,14 +13,12 @@ const transportEngine =
     ? new StubTransport()
     : new SMTPTransport({
         service: "Gmail",
-        port: 465,
-        secure: true,
         auth: {
           XOAuth2: {
             user: config.mailer.user,
-            clientId: config.clientId,
-            clientSecret: config.clientSecret,
-            refreshToken: config.refreshToken
+            clientId: config.mailer.clientId,
+            clientSecret: config.mailer.clientSecret,
+            refreshToken: config.mailer.refreshToken
           }
         }
       });
