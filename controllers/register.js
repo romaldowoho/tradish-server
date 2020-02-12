@@ -25,6 +25,7 @@ module.exports.register = async (ctx, next) => {
   await user.save();
 
   await sendMail({
+    from: "hellotradish@gmail.com",
     to: user.email,
     subject: "Confirm your email",
     locals: { token: verificationToken },
