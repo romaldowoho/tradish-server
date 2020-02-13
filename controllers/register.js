@@ -2,6 +2,7 @@ const uuid = require("uuid/v4");
 const User = require("../models/User");
 const sendMail = require("../libs/sendMail");
 const sgMail = require('@sendgrid/mail');
+const path = require("path");
 const pug = require("pug");
 const juice = require("juice");
 
