@@ -34,8 +34,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const msg = {
   to: user.email,
   from: 'hellotradish@gmail.com',
-  subject: 'Sending with Twilio SendGrid is Fun',
-  text: 'and easy to do anywhere, even with Node.js',
+  subject: 'Please confirm your email',
   html,
 };
 sgMail.send(msg)
